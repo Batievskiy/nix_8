@@ -3,6 +3,9 @@ package hw_1;// 1. Get the string from user in console.
 // 3. Sort them.
 // 4. Print out the number of occurrences of each character.
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
@@ -44,9 +47,19 @@ public class NumberOfEachCharacterInTheString {
 
     private static String getString() {
         System.out.print("Input a string -> ");
-        String string = SCANNER.nextLine();
-        return string; // can't read cyrillic characters
-//        return System.console().readLine();
+        return SCANNER.nextLine(); // can't read cyrillic characters
+//        return System.console().readLine(); // NullPointerException !!!
+
+        // same problem here - can't read cyrillic characters
+//        String string = "";
+//        try {
+//            InputStreamReader streamReader = new InputStreamReader(System.in);
+//            BufferedReader bufferedReader = new BufferedReader(streamReader);
+//            string = bufferedReader.readLine();
+//        } catch (IOException e) {
+//            System.out.println("IOException ;)");
+//        }
+//        return string;
     }
 
     private static void charOccurrenceCount(String sourceString) {
