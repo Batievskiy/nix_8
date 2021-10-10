@@ -3,9 +3,8 @@ package hw_1;// 1. Get the string from user in console.
 // 3. Sort them.
 // 4. Print out the number of occurrences of each character.
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
@@ -14,7 +13,8 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class NumberOfEachCharacterInTheString {
-    private static final Scanner SCANNER = new Scanner(System.in, StandardCharsets.UTF_8);
+    private static final Scanner SCANNER_UTF_8 = new Scanner(System.in, StandardCharsets.UTF_8);
+    private static final Scanner SCANNER_CP866 = new Scanner(System.in, "CP866");
 
     public static void run() {
         title();
@@ -31,7 +31,7 @@ public class NumberOfEachCharacterInTheString {
             System.out.print("\nWant more? ( Y / N ) - > ");
             String s = "";
             while (s.isEmpty()) {
-                s = SCANNER.nextLine();
+                s = SCANNER_UTF_8.nextLine();
                 if (!s.toLowerCase().matches("[y]")) {
                     System.out.println("Bye-Bye ;)\n");
                     isPlay = false;
@@ -47,7 +47,7 @@ public class NumberOfEachCharacterInTheString {
 
     private static String getString() {
         System.out.print("Input a string -> ");
-        return SCANNER.nextLine(); // can't read cyrillic characters
+//        return SCANNER_UTF_8.nextLine(); // can't read cyrillic characters
 //        return System.console().readLine(); // NullPointerException !!!
 
         // same problem here - can't read cyrillic characters
@@ -60,6 +60,14 @@ public class NumberOfEachCharacterInTheString {
 //            System.out.println("IOException ;)");
 //        }
 //        return string;
+
+        // SOLUTION - https://www.cyberforum.ru/java-j2se/thread1532517.html
+        try {
+            System.setOut(new PrintStream(System.out, true, "CP866"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return SCANNER_CP866.nextLine();
     }
 
     private static void charOccurrenceCount(String sourceString) {
