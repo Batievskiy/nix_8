@@ -1,6 +1,8 @@
-package hw_1;// 1. Get the string from user in console.
+// 1. Get the string from user in console.
 // 2. Parse all numbers from this string.
 // 3. Find sum of all numbers in the string.
+
+package hw_1;
 
 import java.util.Scanner;
 

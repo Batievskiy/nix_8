@@ -1,7 +1,9 @@
-package hw_1;// 1. Get the string from user in console.
+// 1. Get the string from user in console.
 // 2. Parse all characters from this string.
 // 3. Sort them.
 // 4. Print out the number of occurrences of each character.
+
+package hw_1;
 
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;

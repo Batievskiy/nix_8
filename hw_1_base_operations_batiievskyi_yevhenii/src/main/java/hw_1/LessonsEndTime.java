@@ -1,5 +1,3 @@
-package hw_1;
-
 // 1. In the school lessons starts at 9:00
 // - lesson duration is 45 minutes
 // - break duration after 1, 3, 5 ... N-th lesson is 5 minutes
@@ -49,6 +47,8 @@ package hw_1;
     td = (n * l) + (n / 2) * b1 + ((n - 1) / 2) * b2
 
      */
+
+package hw_1;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
