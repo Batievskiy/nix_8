@@ -83,7 +83,6 @@ public class NumberOfEachCharacterInTheString {
                 .sorted()
                 .collect(Collectors.joining())
                 .toCharArray();
-        System.out.println(Arrays.toString(charArray));
 
         // iterate through all chars in charArray
         // and save chars in Map
