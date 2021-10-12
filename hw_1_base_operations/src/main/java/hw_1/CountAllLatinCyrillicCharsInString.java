@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class NumberOfEachCharacterInTheString {
+public class CountAllLatinCyrillicCharsInString {
     private static final Scanner SCANNER_UTF_8 = new Scanner(System.in, StandardCharsets.UTF_8);
     private static final Scanner SCANNER_CP866 = new Scanner(System.in, "CP866");
 

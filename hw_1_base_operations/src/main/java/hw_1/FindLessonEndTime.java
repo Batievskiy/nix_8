@@ -53,7 +53,7 @@ package hw_1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class LessonsEndTime {
+public class FindLessonEndTime {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final int START_HOUR = 9 * 60; // first lesson hours

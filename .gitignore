@@ -1,2 +1,4 @@
 # Project exclude paths
-/hw_1_base_operations_batiievskyi_yevhenii/target/
+.idea
+*.iml
+*/target
