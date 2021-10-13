@@ -18,6 +18,8 @@ public class CountAllLatinCyrillicCharsInString {
     private static final Scanner SCANNER_UTF_8 = new Scanner(System.in, StandardCharsets.UTF_8);
     private static final Scanner SCANNER_CP866 = new Scanner(System.in, "CP866");
 
+    private static final String TITLE = "\n---< Number of each character in the String >---\n";
+
     public static void run() {
         title();
         play();
@@ -44,7 +46,7 @@ public class CountAllLatinCyrillicCharsInString {
     }
 
     private static void title() {
-        System.out.println("\n---< Number of each character in the String >---\n");
+        System.out.println(TITLE);
     }
 
     private static String getString() {

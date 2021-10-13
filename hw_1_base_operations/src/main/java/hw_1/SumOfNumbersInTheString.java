@@ -23,12 +23,9 @@ public class SumOfNumbersInTheString {
         boolean isPlay = true;
 
         while (isPlay) {
-            String str = getString();
+            String rawString = getString();
 
-            sumOfDigitsInString(str);
-            sumOfDigitsSignSensitive(str);
-            sumOfNumbersInString(str);
-            sumOfNumbersSignSensitive(str);
+            runSumAllMethods(rawString, isDigitsInString(rawString));
 
             // and let's ask user to play more ;)
             System.out.print("\nWant more? ( Y / N ) - > ");
@@ -41,6 +38,7 @@ public class SumOfNumbersInTheString {
                     break;
                 }
             }
+            System.out.println();
         }
     }
 
@@ -67,11 +65,11 @@ public class SumOfNumbersInTheString {
         System.out.println("sum of digits = " + sum);
     }
 
-    private static void sumOfDigitsSignSensitive(String string) {
+    private static void sumOfDigitsSignSensitive(String s) {
         int sum = 0;
 
-        Pattern pattern = Pattern.compile("[-]*[0-9]", Pattern.MULTILINE);
-        Matcher matcher = pattern.matcher(string);
+        Pattern pattern = Pattern.compile("-?[0-9]", Pattern.MULTILINE);
+        Matcher matcher = pattern.matcher(s);
 
         while (matcher.find()) {
             sum += Integer.parseInt(matcher.group(0));
@@ -105,12 +103,33 @@ public class SumOfNumbersInTheString {
     private static void sumOfNumbersSignSensitive(String s) {
         int sum = 0;
 
-        Pattern pattern = Pattern.compile("[-]*[0-9]+", Pattern.MULTILINE);
+        Pattern pattern = Pattern.compile("-?[0-9]+", Pattern.MULTILINE);
         Matcher matcher = pattern.matcher(s);
 
         while (matcher.find()) {
             sum += Integer.parseInt(matcher.group(0));
         }
         System.out.println("sum of numbers (sing sensitive) = " + sum);
+    }
+
+
+    private static Boolean isDigitsInString(String rawString) {
+        Pattern pattern = Pattern.compile("(.)*(\\d)(.)*");
+        Matcher matcher = pattern.matcher(rawString);
+
+        if (!matcher.find()) {
+            System.out.println("\nNothing to sum ;)");
+            return false;
+        }
+        return true;
+    }
+
+    private static void runSumAllMethods(String s, boolean isDigitsInString) {
+        if (isDigitsInString) {
+            sumOfDigitsInString(s);
+            sumOfDigitsSignSensitive(s);
+            sumOfNumbersInString(s);
+            sumOfNumbersSignSensitive(s);
+        }
     }
 }
