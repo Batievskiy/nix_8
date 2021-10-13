@@ -71,7 +71,7 @@ public class FindLessonEndTime {
         while (isPlay) {
             int lessonNumber = getLessonNumber();
             printLessonEndTime(lessonNumber);
-            System.out.print("Want more? ( Y / N ) - > ");
+            System.out.print("\nWant more? ( Y / N ) - > ");
             String s = "";
             while (s.isEmpty()) {
                 s = SCANNER.nextLine();

@@ -5,9 +5,13 @@
 package hw_1;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SumOfNumbersInTheString {
     public static Scanner SCANNER = new Scanner(System.in);
+
+    public static final String TITLE = "\n---< Parse all numbers from String and Sum them all >---\n";
 
     public static void run() {
         title();
@@ -19,13 +23,15 @@ public class SumOfNumbersInTheString {
         boolean isPlay = true;
 
         while (isPlay) {
-            String string = getString();
-            String numbersFromString = getNumbersFromString(string);
-            long sum = sumNumbers(numbersFromString);
-            printSumOfNumbersInString(sum);
+            String str = getString();
+
+            sumOfDigitsInString(str);
+            sumOfDigitsSignSensitive(str);
+            sumOfNumbersInString(str);
+            sumOfNumbersSignSensitive(str);
 
             // and let's ask user to play more ;)
-            System.out.print("Want more? ( Y / N ) - > ");
+            System.out.print("\nWant more? ( Y / N ) - > ");
             String s = "";
             while (s.isEmpty()) {
                 s = SCANNER.nextLine();
@@ -39,7 +45,7 @@ public class SumOfNumbersInTheString {
     }
 
     private static void title() {
-        System.out.println("\n---< Parse all numbers from String and Sum them all >---\n");
+        System.out.println(TITLE);
     }
 
     private static String getString() {
@@ -47,29 +53,64 @@ public class SumOfNumbersInTheString {
         return SCANNER.nextLine();
     }
 
-    private static String getNumbersFromString(String string) {
-        StringBuilder stringBuilder = new StringBuilder();
+    private static void sumOfDigitsInString(String s) {
+        char[] chArr = s.toCharArray();
 
-        for (int i = 0; i < string.length(); i++) {
-            char character = string.charAt(i);
-            // let's take digits only
-            if (Character.isDigit(character)) {
-                stringBuilder.append(character);
+        int sum = 0;
+
+        for (char c : chArr) {
+            if (Character.isDigit(c)) {
+                sum += Integer.parseInt(String.valueOf(c));
             }
         }
-        return stringBuilder.toString();
+
+        System.out.println("sum of digits = " + sum);
     }
 
-    private static long sumNumbers(String string) {
-        long sum = 0;
-        for (int i = 0; i < string.length(); i++) {
-            String oneCharacter = string.substring(i, i + 1);
-            sum += Integer.parseInt(oneCharacter);
+    private static void sumOfDigitsSignSensitive(String string) {
+        int sum = 0;
+
+        Pattern pattern = Pattern.compile("[-]*[0-9]", Pattern.MULTILINE);
+        Matcher matcher = pattern.matcher(string);
+
+        while (matcher.find()) {
+            sum += Integer.parseInt(matcher.group(0));
         }
-        return sum;
+        System.out.println("sum of digits (sign sensitive) = " + sum);
     }
 
-    private static void printSumOfNumbersInString(long sum) {
-        System.out.println("Sum of all numbers from String is -> " + sum + "\n");
+    private static void sumOfNumbersInString(String s) {
+        char[] chArr = s.toCharArray();
+
+        int sum = 0;
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (char c : chArr) {
+            if (Character.isDigit(c)) {
+                stringBuilder.append(c);
+            } else {
+                if (!stringBuilder.toString().equals("")) {
+                    sum += Integer.parseInt(stringBuilder.toString());
+                    stringBuilder = new StringBuilder();
+                }
+            }
+        }
+        if (!stringBuilder.toString().equals("")) {
+            sum += Integer.parseInt(stringBuilder.toString());
+        }
+        System.out.println("sum of numbers = " + sum);
+    }
+
+    private static void sumOfNumbersSignSensitive(String s) {
+        int sum = 0;
+
+        Pattern pattern = Pattern.compile("[-]*[0-9]+", Pattern.MULTILINE);
+        Matcher matcher = pattern.matcher(s);
+
+        while (matcher.find()) {
+            sum += Integer.parseInt(matcher.group(0));
+        }
+        System.out.println("sum of numbers (sing sensitive) = " + sum);
     }
 }
