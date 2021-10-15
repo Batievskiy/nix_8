@@ -1,6 +1,8 @@
-import hw_1.CountAllLatinCyrillicCharsInString;
-import hw_1.FindLessonEndTime;
-import hw_1.SumOfNumbersInTheString;
+package ua.com.alevel;
+
+import ua.com.alevel.CountAllLatinCyrillicCharsInString.CountAllLatinCyrillicCharsInString;
+import ua.com.alevel.FindLessonEndTime.FindLessonEndTime;
+import ua.com.alevel.SumOfNumbersInTheString.SumOfNumbersInTheString;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -48,7 +48,7 @@
 
      */
 
-package hw_1;
+package ua.com.alevel.FindLessonEndTime;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

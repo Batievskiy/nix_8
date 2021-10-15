@@ -3,7 +3,7 @@
 // 3. Sort them.
 // 4. Print out the number of occurrences of each character.
 
-package hw_1;
+package ua.com.alevel.CountAllLatinCyrillicCharsInString;
 
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
