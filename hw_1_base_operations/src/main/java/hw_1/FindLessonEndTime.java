@@ -56,6 +56,8 @@ import java.util.Scanner;
 public class FindLessonEndTime {
 
     private static final Scanner SCANNER = new Scanner(System.in);
+
+    private static final String TITLE = "\n---< Lesson End Time by its number >---\n";
     private static final int START_HOUR = 9 * 60; // first lesson hours
     private static final int LESSON_DURATION = 45; // lesson minutes
     private static final int BREAK_1 = 5; // first break minutes
@@ -71,16 +73,11 @@ public class FindLessonEndTime {
         while (isPlay) {
             int lessonNumber = getLessonNumber();
             printLessonEndTime(lessonNumber);
-            System.out.print("\nWant more? ( Y / N ) - > ");
-            String s = "";
-            while (s.isEmpty()) {
-                s = SCANNER.nextLine();
-                if (!s.toLowerCase().matches("[y]")) {
-                    System.out.println("Bye-Bye ;)\n");
-                    isPlay = false;
-                    break;
-                }
-            }
+
+            // and let's ask user to play more ;)
+            isPlay = isWantMore(isPlay);
+
+            System.out.println();
         }
     }
 
@@ -116,6 +113,20 @@ public class FindLessonEndTime {
     }
 
     private static void title() {
-        System.out.println("\n---< Lesson End Time by its number >---\n");
+        System.out.println(TITLE);
+    }
+
+    private static boolean isWantMore(boolean isWantMore) {
+        System.out.print("\nWant more? ( Y / N ) - > ");
+        String s = "";
+        while (s.isEmpty()) {
+            s = SCANNER.nextLine();
+            if (!s.toLowerCase().matches("[y]")) {
+                System.out.println("Bye-Bye ;)\n");
+                isWantMore = false;
+                break;
+            }
+        }
+        return isWantMore;
     }
 }

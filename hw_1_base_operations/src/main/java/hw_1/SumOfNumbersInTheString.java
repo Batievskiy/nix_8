@@ -28,18 +28,24 @@ public class SumOfNumbersInTheString {
             runSumAllMethods(rawString, isDigitsInString(rawString));
 
             // and let's ask user to play more ;)
-            System.out.print("\nWant more? ( Y / N ) - > ");
-            String s = "";
-            while (s.isEmpty()) {
-                s = SCANNER.nextLine();
-                if (!s.toLowerCase().matches("[y]")) {
-                    System.out.println("Bye-Bye ;)\n");
-                    isPlay = false;
-                    break;
-                }
-            }
+            isPlay = isWantMore(isPlay);
+
             System.out.println();
         }
+    }
+
+    private static boolean isWantMore(boolean isWantMore) {
+        System.out.print("\nWant more? ( Y / N ) - > ");
+        String s = "";
+        while (s.isEmpty()) {
+            s = SCANNER.nextLine();
+            if (!s.toLowerCase().matches("[y]")) {
+                System.out.println("Bye-Bye ;)\n");
+                isWantMore = false;
+                break;
+            }
+        }
+        return isWantMore;
     }
 
     private static void title() {

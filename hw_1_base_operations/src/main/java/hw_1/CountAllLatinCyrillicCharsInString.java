@@ -32,21 +32,29 @@ public class CountAllLatinCyrillicCharsInString {
 
             charOccurrenceCount(string);
 
-            System.out.print("\nWant more? ( Y / N ) - > ");
-            String s = "";
-            while (s.isEmpty()) {
-                s = SCANNER_UTF_8.nextLine();
-                if (!s.toLowerCase().matches("[y]")) {
-                    System.out.println("Bye-Bye ;)\n");
-                    isPlay = false;
-                    break;
-                }
-            }
+            // and let's ask user to play more ;)
+            isPlay = isWantMore(isPlay);
+
+            System.out.println();
         }
     }
 
     private static void title() {
         System.out.println(TITLE);
+    }
+
+    private static boolean isWantMore(boolean isWantMore) {
+        System.out.print("\nWant more? ( Y / N ) - > ");
+        String s = "";
+        while (s.isEmpty()) {
+            s = SCANNER_UTF_8.nextLine();
+            if (!s.toLowerCase().matches("[y]")) {
+                System.out.println("Bye-Bye ;)\n");
+                isWantMore = false;
+                break;
+            }
+        }
+        return isWantMore;
     }
 
     private static String getString() {
