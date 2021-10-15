@@ -50,6 +50,8 @@
 
 package ua.com.alevel.FindLessonEndTime;
 
+import ua.com.alevel.WantToPlayALittleGame;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -75,7 +77,7 @@ public class FindLessonEndTime {
             printLessonEndTime(lessonNumber);
 
             // and let's ask user to play more ;)
-            isPlay = isWantMore(isPlay);
+            isPlay = WantToPlayALittleGame.isWantMore(isPlay);
 
             System.out.println();
         }
@@ -114,19 +116,5 @@ public class FindLessonEndTime {
 
     private static void title() {
         System.out.println(TITLE);
-    }
-
-    private static boolean isWantMore(boolean isWantMore) {
-        System.out.print("\nWant more? ( Y / N ) - > ");
-        String s = "";
-        while (s.isEmpty()) {
-            s = SCANNER.nextLine();
-            if (!s.toLowerCase().matches("[y]")) {
-                System.out.println("Bye-Bye ;)\n");
-                isWantMore = false;
-                break;
-            }
-        }
-        return isWantMore;
     }
 }

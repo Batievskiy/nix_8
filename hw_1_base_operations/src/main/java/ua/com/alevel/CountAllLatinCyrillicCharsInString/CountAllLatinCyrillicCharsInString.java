@@ -5,9 +5,9 @@
 
 package ua.com.alevel.CountAllLatinCyrillicCharsInString;
 
+import ua.com.alevel.WantToPlayALittleGame;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Scanner;
@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class CountAllLatinCyrillicCharsInString {
-    private static final Scanner SCANNER_UTF_8 = new Scanner(System.in, StandardCharsets.UTF_8);
     private static final Scanner SCANNER_CP866 = new Scanner(System.in, "CP866");
 
     private static final String TITLE = "\n---< Number of each character in the String >---\n";
@@ -33,7 +32,7 @@ public class CountAllLatinCyrillicCharsInString {
             charOccurrenceCount(string);
 
             // and let's ask user to play more ;)
-            isPlay = isWantMore(isPlay);
+            isPlay = WantToPlayALittleGame.isWantMore(isPlay);
 
             System.out.println();
         }
@@ -43,36 +42,8 @@ public class CountAllLatinCyrillicCharsInString {
         System.out.println(TITLE);
     }
 
-    private static boolean isWantMore(boolean isWantMore) {
-        System.out.print("\nWant more? ( Y / N ) - > ");
-        String s = "";
-        while (s.isEmpty()) {
-            s = SCANNER_UTF_8.nextLine();
-            if (!s.toLowerCase().matches("[y]")) {
-                System.out.println("Bye-Bye ;)\n");
-                isWantMore = false;
-                break;
-            }
-        }
-        return isWantMore;
-    }
-
     private static String getString() {
         System.out.print("Input a string -> ");
-//        return SCANNER_UTF_8.nextLine(); // can't read cyrillic characters
-//        return System.console().readLine(); // NullPointerException !!!
-
-        // same problem here - can't read cyrillic characters
-//        String string = "";
-//        try {
-//            InputStreamReader streamReader = new InputStreamReader(System.in);
-//            BufferedReader bufferedReader = new BufferedReader(streamReader);
-//            string = bufferedReader.readLine();
-//        } catch (IOException e) {
-//            System.out.println("IOException ;)");
-//        }
-//        return string;
-
         // SOLUTION - https://www.cyberforum.ru/java-j2se/thread1532517.html
         try {
             System.setOut(new PrintStream(System.out, true, "CP866"));

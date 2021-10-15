@@ -8,8 +8,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class WantToPlayALittleGame {
+    private static final Scanner SCANNER = new Scanner(System.in);
     private static final String WANT_TO_PLAY_A_LITTLE_GAME = "\n---< Want to play a Little Game? >---\n";
     private static final String SUM_ALL_DIGITS_IN_STRING = "[ 1 ] SUM ALL DIGITS in the string.";
     private static final String COUNT_ALL_LATIN_CYRILLIC_CHARS_IN_STRING = "[ 2 ] COUNT ALL LATIN/CYRILLIC CHARS in the string.";
@@ -17,9 +19,12 @@ public class WantToPlayALittleGame {
     private static final String QUIT = "[ Q ] QUIT.";
     private static final String YOUR_CHOICE = "\nYour choice is -> ";
     private static final String WRONG_CHOICE = "\n---> There is NO such choice in the menu.\n---> Try again ;)";
+    private static final String WANT_MORE = "\nWant more? ( Y / N ) - > ";
     private static final String BYE_BYE = "\nBye-Bye ;)\n";
 
     public static void playALittleGame() {
+
+        System.out.println(nix_8);
 
         gamesToPlayMenu();
 
@@ -64,4 +69,36 @@ public class WantToPlayALittleGame {
         System.out.println(QUIT);
         System.out.print(YOUR_CHOICE);
     }
+
+    public static boolean isWantMore(boolean isWantMore) {
+        System.out.print(WANT_MORE);
+        String s = "";
+        while (s.isEmpty()) {
+            s = SCANNER.nextLine();
+            if (!s.toLowerCase().matches("[y]")) {
+                isWantMore = false;
+                break;
+            }
+        }
+        return isWantMore;
+    }
+
+    private static String nix_8 =
+                    "                                                                                                                \n" +
+                    "                                      .###,                                                                     \n" +
+                    "                                     %%%%%%%                                                                    \n" +
+                    "                                     #%%%%%%                                                                    \n" +
+                    "                                       ^^^                                                                      \n" +
+                    "                   ___.                                                                     ___.                \n" +
+                    "       /%%%%%  #%%%%%%%%%%%.         *%%%%%(       %%#                 #%#              /%%%%%%%%%.             \n" +
+                    "       /%%%%%#%%%%##%%%%%%%%%        *%%%%%(       %%%%%#           #%%%%#           /%%%%%%<~>%%%%%(           \n" +
+                    "       /%%%%%%%        #%%%%%#       *%%%%%(       #%%%%%%%(     #%%%%%%%(          /%%%%(      ~%%%%(          \n" +
+                    "       /%%%%%%          %%%%%%       *%%%%%(          %%%%%%%#(%%%%%%%(              /%%%%(     %%%%(           \n" +
+                    "       /%%%%%(          %%%%%%       *%%%%%(             #%(((((((%#                    /%%%%%%%%%#             \n" +
+                    "       /%%%%%(          %%%%%%       *%%%%%(            ((((((((((((/                /%%%%%*****%%%%%/          \n" +
+                    "       /%%%%%(          %%%%%%       *%%%%%(         ((((((((/ ((((((((/           /%%%%%(        %%%%%(        \n" +
+                    "       /%%%%%(          %%%%%%       *%%%%%(       (/                   //         /%%%%(         %%%%%(        \n" +
+                    "       /%%%%%(          %%%%%%       *%%%%%(       (((((((/       (((((((/          /%%%%%(_____(%%%%%(         \n" +
+                    "       /%%%%%(          %%%%%%       *%%%%%(       ((((/             ((((/             /%%%%%%%%%%%%%/          \n" +
+                    "                                                                           %%%%%%%%%%                           \n";
 }
