@@ -20,7 +20,7 @@ public class WantToPlayALittleGame {
     private static final String YOUR_CHOICE = "\nYour choice is -> ";
     private static final String WRONG_CHOICE = "\n---> There is NO such choice in the menu.\n---> Try again ;)";
     private static final String WANT_MORE = "\nWant more? ( Y / N ) - > ";
-    private static final String BYE_BYE = "\nBye-Bye ;)\n";
+    private static final String BYE_BYE = "\n---> Bye-Bye <--- ;)\n";
 
     public static void playALittleGame() {
 
@@ -28,6 +28,19 @@ public class WantToPlayALittleGame {
 
         gamesToPlayMenu();
 
+        setYourChoice();
+    }
+
+    public static void gamesToPlayMenu() {
+        System.out.println(WANT_TO_PLAY_A_LITTLE_GAME);
+        System.out.println(SUM_ALL_DIGITS_IN_STRING);
+        System.out.println(COUNT_ALL_LATIN_CYRILLIC_CHARS_IN_STRING);
+        System.out.println(FIND_LESSON_END_TIME);
+        System.out.println(QUIT);
+        System.out.print(YOUR_CHOICE);
+    }
+
+    private static void setYourChoice() {
         try (BufferedReader bufferedReader = new BufferedReader(
                 new InputStreamReader(System.in)
         )) {
@@ -61,15 +74,6 @@ public class WantToPlayALittleGame {
         }
     }
 
-    public static void gamesToPlayMenu() {
-        System.out.println(WANT_TO_PLAY_A_LITTLE_GAME);
-        System.out.println(SUM_ALL_DIGITS_IN_STRING);
-        System.out.println(COUNT_ALL_LATIN_CYRILLIC_CHARS_IN_STRING);
-        System.out.println(FIND_LESSON_END_TIME);
-        System.out.println(QUIT);
-        System.out.print(YOUR_CHOICE);
-    }
-
     public static boolean isWantMore(boolean isWantMore) {
         System.out.print(WANT_MORE);
         String s = "";
@@ -83,22 +87,24 @@ public class WantToPlayALittleGame {
         return isWantMore;
     }
 
-    private static String nix_8 =
-                    "                                                                                                                \n" +
-                    "                                      .###,                                                                     \n" +
-                    "                                     %%%%%%%                                                                    \n" +
-                    "                                     #%%%%%%                                                                    \n" +
-                    "                                       ^^^                                                                      \n" +
-                    "                   ___.                                                                     ___.                \n" +
-                    "       /%%%%%  #%%%%%%%%%%%.         *%%%%%(       %%#                 #%#              /%%%%%%%%%.             \n" +
-                    "       /%%%%%#%%%%##%%%%%%%%%        *%%%%%(       %%%%%#           #%%%%#           /%%%%%%<~>%%%%%(           \n" +
-                    "       /%%%%%%%        #%%%%%#       *%%%%%(       #%%%%%%%(     #%%%%%%%(          /%%%%(      ~%%%%(          \n" +
-                    "       /%%%%%%          %%%%%%       *%%%%%(          %%%%%%%#(%%%%%%%(              /%%%%(     %%%%(           \n" +
-                    "       /%%%%%(          %%%%%%       *%%%%%(             #%(((((((%#                    /%%%%%%%%%#             \n" +
-                    "       /%%%%%(          %%%%%%       *%%%%%(            ((((((((((((/                /%%%%%*****%%%%%/          \n" +
-                    "       /%%%%%(          %%%%%%       *%%%%%(         ((((((((/ ((((((((/           /%%%%%(        %%%%%(        \n" +
-                    "       /%%%%%(          %%%%%%       *%%%%%(       (/                   //         /%%%%(         %%%%%(        \n" +
-                    "       /%%%%%(          %%%%%%       *%%%%%(       (((((((/       (((((((/          /%%%%%(_____(%%%%%(         \n" +
-                    "       /%%%%%(          %%%%%%       *%%%%%(       ((((/             ((((/             /%%%%%%%%%%%%%/          \n" +
-                    "                                                                           %%%%%%%%%%                           \n";
+    private static final String nix_8 =
+            """
+                                                                                                                                   \s
+                                                          .###,                                                                    \s
+                                                         %%%%%%%                                                                   \s
+                                                         #%%%%%%                                                                   \s
+                                                           ^^^                                                                     \s
+                                       ___.                                                                     ___.               \s
+                           /%%%%%  #%%%%%%%%%%%.         *%%%%%(       %%#                 #%#              /%%%%%%%%%.            \s
+                           /%%%%%#%%%%##%%%%%%%%%        *%%%%%(       %%%%%#           #%%%%#           /%%%%%%<~>%%%%%(          \s
+                           /%%%%%%%        #%%%%%#       *%%%%%(       #%%%%%%%(     #%%%%%%%(          /%%%%(      ~%%%%(         \s
+                           /%%%%%%          %%%%%%       *%%%%%(          %%%%%%%#(%%%%%%%(              /%%%%(     %%%%(          \s
+                           /%%%%%(          %%%%%%       *%%%%%(             #%(((((((%#                    /%%%%%%%%%#            \s
+                           /%%%%%(          %%%%%%       *%%%%%(            ((((((((((((/                /%%%%%*****%%%%%/         \s
+                           /%%%%%(          %%%%%%       *%%%%%(         ((((((((/ ((((((((/           /%%%%%(        %%%%%(       \s
+                           /%%%%%(          %%%%%%       *%%%%%(       (/                   //         /%%%%(         %%%%%(       \s
+                           /%%%%%(          %%%%%%       *%%%%%(       (((((((/       (((((((/          /%%%%%(_____(%%%%%(        \s
+                           /%%%%%(          %%%%%%       *%%%%%(       ((((/             ((((/             /%%%%%%%%%%%%%/         \s
+                                                                                               %%%%%%%%%%                          \s
+                    """;
 }
