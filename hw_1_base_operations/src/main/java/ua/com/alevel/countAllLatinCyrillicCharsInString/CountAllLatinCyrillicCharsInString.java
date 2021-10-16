@@ -6,8 +6,9 @@
 package ua.com.alevel.countAllLatinCyrillicCharsInString;
 
 import ua.com.alevel.WantToPlayALittleGame;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Scanner;
@@ -15,24 +16,24 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class CountAllLatinCyrillicCharsInString {
-    private static final Scanner SCANNER_CP866 = new Scanner(System.in, "CP866");
+//    private static final Scanner SCANNER_CP866 = new Scanner(System.in, "CP866");
 
     private static final String TITLE = "\n---< Number of each character in the String >---\n";
 
-    public static void run() {
+    public static void run(BufferedReader bufferedReader) throws IOException {
         title();
-        play();
+        play(bufferedReader);
     }
 
-    public static void play() {
+    public static void play(BufferedReader bufferedReader) throws IOException {
         boolean isPlay = true;
         while (isPlay) {
-            String string = getString();
+            String string = getString(bufferedReader);
 
             charOccurrenceCount(string);
 
             // and let's ask user to play more ;)
-            isPlay = WantToPlayALittleGame.isWantMore(isPlay);
+            isPlay = WantToPlayALittleGame.isWantMore(bufferedReader, isPlay);
 
             System.out.println();
         }
@@ -42,15 +43,15 @@ public class CountAllLatinCyrillicCharsInString {
         System.out.println(TITLE);
     }
 
-    private static String getString() {
+    private static String getString(BufferedReader bufferedReader) throws IOException {
         System.out.print("Input a string -> ");
-        // SOLUTION - https://www.cyberforum.ru/java-j2se/thread1532517.html
-        try {
-            System.setOut(new PrintStream(System.out, true, "CP866"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return SCANNER_CP866.nextLine();
+//        // SOLUTION - https://www.cyberforum.ru/java-j2se/thread1532517.html
+//        try {
+//            System.setOut(new PrintStream(System.out, true, "CP866"));
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+        return bufferedReader.readLine();
     }
 
     private static void charOccurrenceCount(String sourceString) {

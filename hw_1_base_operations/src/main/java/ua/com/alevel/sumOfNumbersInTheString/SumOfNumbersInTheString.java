@@ -5,6 +5,8 @@
 package ua.com.alevel.sumOfNumbersInTheString;
 import ua.com.alevel.WantToPlayALittleGame;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,22 +15,22 @@ public class SumOfNumbersInTheString {
     public static Scanner SCANNER = new Scanner(System.in);
     public static final String TITLE = "\n---< Parse all numbers from String and Sum them all >---\n";
 
-    public static void run() {
+    public static void run(BufferedReader bufferedReader) throws IOException {
         title();
-        play();
+        play(bufferedReader);
     }
 
-    private static void play() {
+    private static void play(BufferedReader bufferedReader) throws IOException {
         // let's create a flag to loop the game ;)
         boolean isPlay = true;
 
         while (isPlay) {
-            String rawString = getString();
+            String rawString = getString(bufferedReader);
 
             runSumAllMethods(rawString, isDigitsInString(rawString));
 
             // and let's ask user to play more ;)
-            isPlay = WantToPlayALittleGame.isWantMore(isPlay);
+            isPlay = WantToPlayALittleGame.isWantMore(bufferedReader, isPlay);
 
             System.out.println();
         }
@@ -38,9 +40,9 @@ public class SumOfNumbersInTheString {
         System.out.println(TITLE);
     }
 
-    private static String getString() {
+    private static String getString(BufferedReader bufferedReader) throws IOException {
         System.out.print("Input a string -> ");
-        return SCANNER.nextLine();
+        return bufferedReader.readLine();
     }
 
     private static void sumOfDigitsInString(String s) {

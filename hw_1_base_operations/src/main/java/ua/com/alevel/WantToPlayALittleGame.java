@@ -4,14 +4,17 @@ import ua.com.alevel.countAllLatinCyrillicCharsInString.CountAllLatinCyrillicCha
 import ua.com.alevel.findLessonEndTime.FindLessonEndTime;
 import ua.com.alevel.sumOfNumbersInTheString.SumOfNumbersInTheString;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Console;
+import java.io.PrintStream;
 import java.util.Locale;
-import java.util.Scanner;
 
 public class WantToPlayALittleGame {
-    private static final Scanner SCANNER = new Scanner(System.in);
+    private static InputStreamReader inputStreamReader;
     private static final String WANT_TO_PLAY_A_LITTLE_GAME = "\n---< Want to play a Little Game? >---\n";
     private static final String SUM_ALL_DIGITS_IN_STRING = "[ 1 ] SUM ALL DIGITS in the string.";
     private static final String COUNT_ALL_LATIN_CYRILLIC_CHARS_IN_STRING = "[ 2 ] COUNT ALL LATIN/CYRILLIC CHARS in the string.";
@@ -22,13 +25,20 @@ public class WantToPlayALittleGame {
     private static final String WANT_MORE = "\nWant more? ( Y / N ) - > ";
     private static final String BYE_BYE = "\n---> Bye-Bye <--- ;)\n";
 
-    public static void playALittleGame() {
+    public static void playALittleGame() throws IOException {
+
+        setConsoleCharSet();
 
         System.out.println(nix_8);
 
-        gamesToPlayMenu();
+        try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
 
-        setYourChoice();
+            setYourChoice(bufferedReader);
+        } catch (IOException e) {
+            // I don't know how to deal with an Exceptions in proper way :(
+            // so... rethrow.
+            throw e;
+        }
     }
 
     public static void gamesToPlayMenu() {
@@ -40,51 +50,58 @@ public class WantToPlayALittleGame {
         System.out.print(YOUR_CHOICE);
     }
 
-    private static void setYourChoice() {
-        try (BufferedReader bufferedReader = new BufferedReader(
-                new InputStreamReader(System.in)
-        )) {
-            String gameToPlay;
-            while ((gameToPlay = bufferedReader.readLine()) != null) {
-                switch (gameToPlay.toLowerCase(Locale.ROOT)) {
-                    case "1" -> {
-                        SumOfNumbersInTheString.run();
-                        gamesToPlayMenu();
-                    }
-                    case "2" -> {
-                        CountAllLatinCyrillicCharsInString.run();
-                        gamesToPlayMenu();
-                    }
-                    case "3" -> {
-                        FindLessonEndTime.run();
-                        gamesToPlayMenu();
-                    }
-                    case "q" -> {
-                        System.out.println(BYE_BYE);
-                        System.exit(0);
-                    }
-                    default -> {
-                        System.out.println(WRONG_CHOICE);
-                        gamesToPlayMenu();
-                    }
+    private static void setYourChoice(BufferedReader bufferedReader) throws IOException {
+
+        String gameToPlay;
+
+        while (true) {
+
+            gamesToPlayMenu();
+
+            gameToPlay = bufferedReader.readLine();
+            switch (gameToPlay.toLowerCase(Locale.ROOT)) {
+                case "1" -> SumOfNumbersInTheString.run(bufferedReader);
+                case "2" -> CountAllLatinCyrillicCharsInString.run(bufferedReader);
+                case "3" -> FindLessonEndTime.run(bufferedReader);
+                case "q", "й" -> {
+                    System.out.println(BYE_BYE);
+                    System.exit(0);
                 }
+                default -> System.out.println(WRONG_CHOICE);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    public static boolean isWantMore(boolean isWantMore) {
+    public static boolean isWantMore(BufferedReader bufferedReader, boolean isWantMore) throws IOException {
         System.out.print(WANT_MORE);
         String s = "";
         while (s.isEmpty()) {
-            s = SCANNER.nextLine();
-            if (!s.toLowerCase().matches("[y]")) {
+            s = bufferedReader.readLine();
+            if (!s.toLowerCase().matches("[yн]")) {
                 isWantMore = false;
                 break;
             }
         }
         return isWantMore;
+    }
+
+    private static void setConsoleCharSet() throws UnsupportedEncodingException {
+        // SOLUTION HERE - https://newbedev.com/java-how-to-detect-and-change-encoding-of-system-console
+        String charSetName;
+        // create current console object
+        Console currentConsole = System.console();
+        // and check it for null
+        if (currentConsole != null) {
+            // get charset name from currentConsole object
+            charSetName = currentConsole.charset().name();
+            // and setting system out according this charset autoFlush true
+            System.setOut(new PrintStream(System.out, true, charSetName));
+            // and setting current inputStreamReader using came sharSetName
+            inputStreamReader = new InputStreamReader(System.in, charSetName);
+        } else {
+            // if current console is null then stay on current charset
+            inputStreamReader = new InputStreamReader(System.in);
+        }
     }
 
     private static final String nix_8 =

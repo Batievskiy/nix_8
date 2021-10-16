@@ -52,12 +52,12 @@ package ua.com.alevel.findLessonEndTime;
 
 import ua.com.alevel.WantToPlayALittleGame;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FindLessonEndTime {
-
-    private static final Scanner SCANNER = new Scanner(System.in);
 
     private static final String TITLE = "\n---< Lesson End Time by its number >---\n";
     private static final int START_HOUR = 9 * 60; // first lesson hours
@@ -65,19 +65,19 @@ public class FindLessonEndTime {
     private static final int BREAK_1 = 5; // first break minutes
     private static final int BREAK_2 = 15; // second break minutes
 
-    public static void run() {
+    public static void run(BufferedReader bufferedReader) throws IOException {
         title();
-        play();
+        play(bufferedReader);
     }
 
-    private static void play() {
+    private static void play(BufferedReader bufferedReader) throws IOException {
         boolean isPlay = true;
         while (isPlay) {
-            int lessonNumber = getLessonNumber();
+            int lessonNumber = getLessonNumber(bufferedReader);
             printLessonEndTime(lessonNumber);
 
             // and let's ask user to play more ;)
-            isPlay = WantToPlayALittleGame.isWantMore(isPlay);
+            isPlay = WantToPlayALittleGame.isWantMore(bufferedReader, isPlay);
 
             System.out.println();
         }
@@ -91,11 +91,11 @@ public class FindLessonEndTime {
         System.out.printf("............ends at -> %d:%02d%n\n", totalHours, totalMinutes);
     }
 
-    private static int getLessonNumber() {
+    private static int getLessonNumber(BufferedReader bufferedReader) throws IOException {
         String lessonNumber;
         while (true) {
             System.out.print("Enter lesson number -> ");
-            lessonNumber = SCANNER.nextLine().trim();
+            lessonNumber = bufferedReader.readLine();
             try {
                 if (lessonNumber.matches("[1-9]|10")) {
                     break;
@@ -110,8 +110,8 @@ public class FindLessonEndTime {
     }
 
     private static void printInvalidLessonNumber() {
-        System.err.println("Invalid lesson number!");
-        System.out.println(".......must be 1 to 10");
+        System.out.println("\nInvalid lesson number!");
+        System.out.println(".......must be 1 to 10\n");
     }
 
     private static void title() {
