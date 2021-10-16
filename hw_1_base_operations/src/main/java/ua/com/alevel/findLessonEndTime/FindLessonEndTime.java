@@ -48,7 +48,7 @@
 
      */
 
-package ua.com.alevel.FindLessonEndTime;
+package ua.com.alevel.findLessonEndTime;
 
 import ua.com.alevel.WantToPlayALittleGame;
 

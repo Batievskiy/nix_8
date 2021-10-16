@@ -2,7 +2,7 @@
 // 2. Parse all numbers from this string.
 // 3. Find sum of all numbers in the string.
 
-package ua.com.alevel.SumOfNumbersInTheString;
+package ua.com.alevel.sumOfNumbersInTheString;
 import ua.com.alevel.WantToPlayALittleGame;
 
 import java.util.Scanner;
