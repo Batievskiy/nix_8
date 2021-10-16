@@ -3,6 +3,7 @@ package ua.com.alevel;
 import ua.com.alevel.countAllLatinCyrillicCharsInString.CountAllLatinCyrillicCharsInString;
 import ua.com.alevel.findLessonEndTime.FindLessonEndTime;
 import ua.com.alevel.sumOfNumbersInTheString.SumOfNumbersInTheString;
+import ua.com.alevel.interfaces.GameInterface;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -23,7 +24,6 @@ public class WantToPlayALittleGame {
     private static final String YOUR_CHOICE = "\nYour choice is -> ";
     private static final String WRONG_CHOICE = "\n---> There is NO such choice in the menu.\n---> Try again ;)";
     private static final String WANT_MORE = "\nWant more? ( Y / N ) - > ";
-    private static final String BYE_BYE = "\n---> Bye-Bye <--- ;)\n";
 
     public static void playALittleGame() throws IOException {
 
@@ -60,9 +60,9 @@ public class WantToPlayALittleGame {
 
             gameToPlay = bufferedReader.readLine();
             switch (gameToPlay.toLowerCase(Locale.ROOT)) {
-                case "1" -> SumOfNumbersInTheString.run(bufferedReader);
-                case "2" -> CountAllLatinCyrillicCharsInString.run(bufferedReader);
-                case "3" -> FindLessonEndTime.run(bufferedReader);
+                case "1" -> playSelectedGame(bufferedReader, new SumOfNumbersInTheString());
+                case "2" -> playSelectedGame(bufferedReader, new CountAllLatinCyrillicCharsInString());
+                case "3" -> playSelectedGame(bufferedReader, new FindLessonEndTime());
                 case "q", "й" -> {
                     System.out.println(BYE_BYE);
                     System.exit(0);
@@ -72,17 +72,20 @@ public class WantToPlayALittleGame {
         }
     }
 
-    public static boolean isWantMore(BufferedReader bufferedReader, boolean isWantMore) throws IOException {
-        System.out.print(WANT_MORE);
-        String s = "";
-        while (s.isEmpty()) {
-            s = bufferedReader.readLine();
-            if (!s.toLowerCase().matches("[yн]")) {
-                isWantMore = false;
-                break;
-            }
-        }
-        return isWantMore;
+    public static boolean isWantMore(String gameToPlay) {
+        return gameToPlay.equalsIgnoreCase("y") || gameToPlay.equalsIgnoreCase("н");
+    }
+
+
+    private static void playSelectedGame(BufferedReader bufferedReader, GameInterface playableGame) throws IOException {
+        String gameToPlay;
+
+        // let's loop the game to chose
+        do {
+            playableGame.play(bufferedReader);
+            System.out.print(WANT_MORE);
+            gameToPlay = bufferedReader.readLine();
+        } while (isWantMore(gameToPlay));
     }
 
     private static void setConsoleCharSet() throws UnsupportedEncodingException {
@@ -106,22 +109,34 @@ public class WantToPlayALittleGame {
 
     private static final String nix_8 =
             """
-                                                                                                                                   \s
-                                                          .###,                                                                    \s
-                                                         %%%%%%%                                                                   \s
-                                                         #%%%%%%                                                                   \s
-                                                           ^^^                                                                     \s
-                                       ___.                                                                     ___.               \s
-                           /%%%%%  #%%%%%%%%%%%.         *%%%%%(       %%#                 #%#              /%%%%%%%%%.            \s
-                           /%%%%%#%%%%##%%%%%%%%%        *%%%%%(       %%%%%#           #%%%%#           /%%%%%%<~>%%%%%(          \s
-                           /%%%%%%%        #%%%%%#       *%%%%%(       #%%%%%%%(     #%%%%%%%(          /%%%%(      ~%%%%(         \s
-                           /%%%%%%          %%%%%%       *%%%%%(          %%%%%%%#(%%%%%%%(              /%%%%(     %%%%(          \s
-                           /%%%%%(          %%%%%%       *%%%%%(             #%(((((((%#                    /%%%%%%%%%#            \s
-                           /%%%%%(          %%%%%%       *%%%%%(            ((((((((((((/                /%%%%%*****%%%%%/         \s
-                           /%%%%%(          %%%%%%       *%%%%%(         ((((((((/ ((((((((/           /%%%%%(        %%%%%(       \s
-                           /%%%%%(          %%%%%%       *%%%%%(       (/                   //         /%%%%(         %%%%%(       \s
-                           /%%%%%(          %%%%%%       *%%%%%(       (((((((/       (((((((/          /%%%%%(_____(%%%%%(        \s
-                           /%%%%%(          %%%%%%       *%%%%%(       ((((/             ((((/             /%%%%%%%%%%%%%/         \s
-                                                                                               %%%%%%%%%%                          \s
+                                                                                                                             \s
+                                                         .###,                                                               \s
+                                                        %%%%%%%                                                              \s
+                                                        #%%%%%%                                                              \s
+                                                          ^^^                                                                \s
+                                      ___.                                                                     ___.          \s
+                          /%%%%%  #%%%%%%%%%%%.         *%%%%%(       %%#                 #%#              /%%%%%%%%%.       \s
+                          /%%%%%#%%%%##%%%%%%%%%        *%%%%%(       %%%%%#           #%%%%#           /%%%%%%<~>%%%%%(     \s
+                          /%%%%%%%        #%%%%%#       *%%%%%(       #%%%%%%%(     #%%%%%%%(          /%%%%(      ~%%%%(    \s
+                          /%%%%%%          %%%%%%       *%%%%%(          %%%%%%%#(%%%%%%%(              /%%%%(     %%%%(     \s
+                          /%%%%%(          %%%%%%       *%%%%%(             #%(((((((%#                    /%%%%%%%%%#       \s
+                          /%%%%%(          %%%%%%       *%%%%%(            ((((((((((((/                /%%%%%*****%%%%%/    \s
+                          /%%%%%(          %%%%%%       *%%%%%(         ((((((((/ ((((((((/           /%%%%%(        %%%%%(  \s
+                          /%%%%%(          %%%%%%       *%%%%%(       (/                   //         /%%%%(         %%%%%(  \s
+                          /%%%%%(          %%%%%%       *%%%%%(       (((((((/       (((((((/          /%%%%%(_____(%%%%%(   \s
+                          /%%%%%(          %%%%%%       *%%%%%(       ((((/             ((((/             /%%%%%%%%%%%%%/    \s
+                                                                                              %%%%%%%%%%                     \s
+                    """;
+    private static final String BYE_BYE =
+            """
+                                                                                                                             \s
+                          /%%%%%%%%%.   /%%(        /%%(   /%%%%%%%%%.         /%%%%%%%%%.   /%%(        /%%(  /%%%%%%%%%.   \s
+                          /%%(     #%%    /%%(    /%%(     /%%(                /%%(     #%%    /%%(    /%%(    /%%(          \s
+                          /%%(     #%%       /%%#%(        /%%(                /%%(     #%%       /%%#%(       /%%(          \s
+                          /%%%%%%%%(          /%%(         /%%%%%%%%(   /%%(   /%%%%%%%%(          /%%(        /%%%%%%%%(    \s
+                          /%%(     #%%        /%%(         /%%(                /%%(     #%%        /%%(        /%%(          \s
+                          /%%(     #%%        /%%(         /%%(                /%%(     #%%        /%%(        /%%(          \s
+                          /%%%%%%%%%.         /%%(         /%%%%%%%%%.         /%%%%%%%%%.         /%%(        /%%%%%%%%%.   \s
+                                      
                     """;
 }

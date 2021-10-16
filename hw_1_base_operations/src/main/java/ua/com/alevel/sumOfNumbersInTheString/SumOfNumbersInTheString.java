@@ -3,37 +3,25 @@
 // 3. Find sum of all numbers in the string.
 
 package ua.com.alevel.sumOfNumbersInTheString;
-import ua.com.alevel.WantToPlayALittleGame;
+
+import ua.com.alevel.interfaces.GameInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SumOfNumbersInTheString {
-    public static Scanner SCANNER = new Scanner(System.in);
+public class SumOfNumbersInTheString implements GameInterface {
+
     public static final String TITLE = "\n---< Parse all numbers from String and Sum them all >---\n";
 
-    public static void run(BufferedReader bufferedReader) throws IOException {
+    @Override
+    public void play(BufferedReader bufferedReader) throws IOException {
         title();
-        play(bufferedReader);
-    }
 
-    private static void play(BufferedReader bufferedReader) throws IOException {
-        // let's create a flag to loop the game ;)
-        boolean isPlay = true;
+        String rawString = getString(bufferedReader);
 
-        while (isPlay) {
-            String rawString = getString(bufferedReader);
-
-            runSumAllMethods(rawString, isDigitsInString(rawString));
-
-            // and let's ask user to play more ;)
-            isPlay = WantToPlayALittleGame.isWantMore(bufferedReader, isPlay);
-
-            System.out.println();
-        }
+        runSumAllMethods(rawString, isDigitsInString(rawString));
     }
 
     private static void title() {

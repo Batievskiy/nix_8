@@ -50,14 +50,13 @@
 
 package ua.com.alevel.findLessonEndTime;
 
-import ua.com.alevel.WantToPlayALittleGame;
+import ua.com.alevel.interfaces.GameInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
-public class FindLessonEndTime {
+public class FindLessonEndTime implements GameInterface {
 
     private static final String TITLE = "\n---< Lesson End Time by its number >---\n";
     private static final int START_HOUR = 9 * 60; // first lesson hours
@@ -65,22 +64,13 @@ public class FindLessonEndTime {
     private static final int BREAK_1 = 5; // first break minutes
     private static final int BREAK_2 = 15; // second break minutes
 
-    public static void run(BufferedReader bufferedReader) throws IOException {
+    @Override
+    public void play(BufferedReader bufferedReader) throws IOException {
         title();
-        play(bufferedReader);
-    }
 
-    private static void play(BufferedReader bufferedReader) throws IOException {
-        boolean isPlay = true;
-        while (isPlay) {
-            int lessonNumber = getLessonNumber(bufferedReader);
-            printLessonEndTime(lessonNumber);
+        int lessonNumber = getLessonNumber(bufferedReader);
 
-            // and let's ask user to play more ;)
-            isPlay = WantToPlayALittleGame.isWantMore(bufferedReader, isPlay);
-
-            System.out.println();
-        }
+        printLessonEndTime(lessonNumber);
     }
 
     private static void printLessonEndTime(Integer lessonNumber) {
