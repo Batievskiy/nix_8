@@ -4,6 +4,9 @@ package ua.com.alevel;
  * Bunch of overloaded reverse methods to play with
  */
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public final class ReverseString {
 
     // default constructor
@@ -50,15 +53,20 @@ public final class ReverseString {
         return reversedString.toString();
     }
 
-    // reverse string preserving words position
+    // reverse string preserving words position (and proper amount of whitespaces)
     public static String reverse(String sourceString, boolean isWordsPositionPreserve) {
         if (isWordsPositionPreserve) {
+            StringBuilder stringBuilder = new StringBuilder();
             String[] wordsArray = sourceString.split("\\s+");
-            StringBuilder reversedWord = new StringBuilder();
+            Matcher matcher = Pattern.compile("\\s+").matcher(sourceString);
+
             for (String currentWord : wordsArray) {
-                reversedWord.append(reverse(currentWord)).append(" ");
+                stringBuilder.append(reverse(currentWord));
+                if (matcher.find()) {
+                    stringBuilder.append(matcher.group());
+                }
             }
-            return reversedWord.toString();
+            return stringBuilder.toString();
         }
         return reverse(sourceString);
     }
