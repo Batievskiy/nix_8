@@ -17,9 +17,12 @@ public final class ReverseString {
         String sourceString = "0123456789";
         String textString = "hello java world java";
         System.out.println();
-        System.out.println("sourceString -> " + sourceString);
 
-        System.out.println("forLoopSimpleReverse -> " + reverse(sourceString) + "\n");
+        System.out.println("sourceString -> " + sourceString);
+        System.out.println("textString -> " + textString + "\n");
+
+        System.out.println("forLoopSimpleReverse -> " + reverse(sourceString));
+        System.out.println("reverseStringPreserveWordPosition -> " + reverse(textString, true) + "\n");
 //        System.out.println("recursiveSimpleReverse -> " + reverseRecursive(sourceString));
 
         System.out.println("reverseStringStartIndex(sourceString, 6) -> " + reverse(sourceString, 6));
@@ -45,6 +48,19 @@ public final class ReverseString {
             reversedString.append(sourceString.charAt(i));
         }
         return reversedString.toString();
+    }
+
+    // reverse string preserving words position
+    public static String reverse(String sourceString, boolean isWordsPositionPreserve) {
+        if (isWordsPositionPreserve) {
+            String[] wordsArray = sourceString.split("\\s+");
+            StringBuilder reversedWord = new StringBuilder();
+            for (String currentWord : wordsArray) {
+                reversedWord.append(reverse(currentWord)).append(" ");
+            }
+            return reversedWord.toString();
+        }
+        return reverse(sourceString);
     }
 
     // recursive - reverse whole string
@@ -200,13 +216,6 @@ public final class ReverseString {
         }
 
         return reverse(sourceString, indexOfStartSubstring, indexOfEndSubstring);
-    }
-
-    // reverse string preserving words position
-    public static String reverseStringPreserveWordPosition(String sourceString) {
-        StringBuilder stringBuilder = new StringBuilder();
-        // TODO
-        return sourceString;
     }
 
     // start index validation
