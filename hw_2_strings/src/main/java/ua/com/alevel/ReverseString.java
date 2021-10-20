@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public final class ReverseString {
 
     // default constructor
-    private ReverseString(){
+    private ReverseString() {
 
     }
 
@@ -26,7 +26,7 @@ public final class ReverseString {
 
         System.out.println("forLoopSimpleReverse -> " + reverse(sourceString));
         System.out.println("reverseStringPreserveWordPosition -> " + reverse(textString, true) + "\n");
-//        System.out.println("recursiveSimpleReverse -> " + reverseRecursive(sourceString));
+        System.out.println("recursiveSimpleReverse -> " + reverseRecursive(sourceString));
 
         System.out.println("reverseStringStartIndex(sourceString, 6) -> " + reverse(sourceString, 6));
         System.out.println("reverseStringStartIndexEndIndex(sourceString, 1, 7) -> " + reverse(sourceString, 1, 7));
@@ -39,8 +39,6 @@ public final class ReverseString {
         System.out.println("reverseStringStartChar(sourceString, '3') -> " + reverse(sourceString, '3'));
         System.out.println("reverseStringStartCharEndChar(sourceString, '1', '7') -> " + reverse(sourceString, '1', '7'));
         System.out.println("reverseStringStartCharEndCharIsInclusive(sourceString, '2', '7', false) -> " + reverse(sourceString, '2', '7', false) + "\n");
-
-
     }
 
     // old good for loop - reverse whole string
