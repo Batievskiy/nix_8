@@ -1,4 +1,4 @@
-package ua.com.alevel;
+package ua.com.alevel.reverseString;
 
 /*
  * Bunch of overloaded reverse methods to play with
@@ -80,7 +80,7 @@ public final class ReverseString {
     public static String reverse(String sourceString, String substring) {
         // check startSubstring and endChar in endSubstring ?
         if (!sourceString.contains(substring)) {
-            System.err.println("substring isn't found in sourceString");
+            System.err.println("\nsubstring isn't found in sourceString");
             throw new IllegalArgumentException();
         }
         return sourceString.replaceAll(substring, reverse(substring));
@@ -151,7 +151,7 @@ public final class ReverseString {
 
         // check startChar in sourceString ?
         if (!sourceString.contains(Character.toString(startChar))) {
-            System.err.println("startChar isn't found in sourceString");
+            System.err.println("\nstartChar isn't found in sourceString");
             throw new IllegalArgumentException();
         }
 
@@ -164,11 +164,11 @@ public final class ReverseString {
 
         // check startChar and endChar in sourceString ?
         if (!sourceString.contains(Character.toString(startChar))) {
-            System.err.println("startChar isn't found in sourceString");
+            System.err.println("\nstartChar isn't found in sourceString");
             throw new IllegalArgumentException();
         }
         if (!sourceString.contains(Character.toString(endChar))) {
-            System.err.println("endChar isn't found in sourceString");
+            System.err.println("\nendChar isn't found in sourceString");
             throw new IllegalArgumentException();
         }
 
@@ -196,11 +196,11 @@ public final class ReverseString {
     public static String reverse(String sourceString, String startSubstring, String endSubstring) {
         // check startSubstring and endChar in endSubstring ?
         if (!sourceString.contains(startSubstring)) {
-            System.err.println("startSubstring isn't found in sourceString");
+            System.err.println("\nstartSubstring isn't found in sourceString");
             throw new IllegalArgumentException();
         }
         if (!sourceString.contains(endSubstring)) {
-            System.err.println("endSubstring isn't found in sourceString");
+            System.err.println("\nendSubstring isn't found in sourceString");
             throw new IllegalArgumentException();
         }
 
@@ -227,7 +227,7 @@ public final class ReverseString {
     // start index validation
     private static void isStartIndexValid(String sourceString, int startIndex) {
         if (startIndex < 0 || startIndex > sourceString.length()) {
-            System.err.println("startIndex out of bounds");
+            System.err.println("\nstartIndex out of bounds");
             throw new IndexOutOfBoundsException();
         }
     }
@@ -235,15 +235,15 @@ public final class ReverseString {
     // startIndex and endIndex validation
     private static void isStartAndEndIndexValid(String sourceString, int startIndex, int endIndex) {
         if (startIndex > endIndex) {
-            System.err.println("startIndex cannot be greater than endIndex!");
+            System.err.println("\nstartIndex cannot be greater than endIndex!");
             throw new IllegalArgumentException();
         }
         if (startIndex < 0) {
-            System.err.println("startIndex out of bounds");
+            System.err.println("\nstartIndex out of bounds");
             throw new IndexOutOfBoundsException();
         }
         if (endIndex > sourceString.length() - 1) {
-            System.err.println("endIndex out of bounds");
+            System.err.println("\nendIndex out of bounds");
             throw new IndexOutOfBoundsException();
         }
     }
