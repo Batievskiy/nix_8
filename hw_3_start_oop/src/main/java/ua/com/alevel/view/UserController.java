@@ -61,7 +61,7 @@ public class UserController {
                 case "2" -> update(bufferedReader);
                 case "3" -> delete(bufferedReader);
                 case "4" -> findById(bufferedReader);
-                case "5" -> findAll(bufferedReader);
+                case "5" -> findAll();
                 case "q", "й" -> {
                     System.out.println(BYE_BYE);
                     System.exit(0);
@@ -105,7 +105,7 @@ public class UserController {
             user.setId(id);
             user.setName(nameString);
             user.setAge(age);
-            userService.create(user);
+            userService.update(user);
         } catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
@@ -135,7 +135,7 @@ public class UserController {
         }
     }
 
-    private void findAll(BufferedReader bufferedReader) {
+    private void findAll() {
         System.out.println("UserController.findAll");
         List<User> usersList = userService.findAll();
         if (usersList != null && usersList.size() != 0) {
