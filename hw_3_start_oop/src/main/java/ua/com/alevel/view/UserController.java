@@ -10,6 +10,14 @@ import java.util.Locale;
 
 public class UserController {
     private static InputStreamReader inputStreamReader;
+    private static final String CREATE_USER = "[ 1 ] Create user";
+    private static final String UPDATE_USER = "[ 2 ] Update user";
+    private static final String DELETE_USER = "[ 3 ] Delete user";
+    private static final String FIND_BY_ID = "[ 4 ] findById user";
+    private static final String FIND_ALL = "[ 5 ] findAll users";
+    private static final String QUIT = "[ Q ] QUIT.";
+    private static final String YOUR_CHOICE = "\nYour choice is -> ";
+    private static final String WRONG_CHOICE = "\n---> There is NO such choice in the menu.\n---> Try again ;)";
 
     private final UserService userService = new UserService();
 
@@ -30,12 +38,13 @@ public class UserController {
     }
 
     private void gamesToPlayMenu() {
-        System.out.println("[ 1 ] create user");
-        System.out.println("[ 2 ] update user");
-        System.out.println("[ 3 ] delete user");
-        System.out.println("[ 4 ] findById user");
-        System.out.println("[ 5 ] findAll users");
-        System.out.println("[ q ] quit");
+        System.out.println(CREATE_USER);
+        System.out.println(UPDATE_USER);
+        System.out.println(DELETE_USER);
+        System.out.println(FIND_BY_ID);
+        System.out.println(FIND_ALL);
+        System.out.println(QUIT);
+        System.out.print(YOUR_CHOICE);
     }
 
     private void setYourChoice(BufferedReader bufferedReader) throws IOException {
@@ -57,7 +66,7 @@ public class UserController {
                     System.out.println(BYE_BYE);
                     System.exit(0);
                 }
-                default -> System.out.println("There is NO such choice!\nTry again!");
+                default -> System.out.println(WRONG_CHOICE);
             }
         }
     }
