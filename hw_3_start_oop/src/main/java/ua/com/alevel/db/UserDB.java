@@ -29,6 +29,8 @@ public class UserDB {
 
     public void update(User user) {
         User currentUser = findById(user.getId());
+        currentUser.setAge(user.getAge());
+        currentUser.setName(user.getName());
     }
 
     public void delete(String id) {
