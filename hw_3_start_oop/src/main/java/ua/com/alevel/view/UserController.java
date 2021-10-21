@@ -72,11 +72,11 @@ public class UserController {
     }
 
     private static void printError(String error) {
-        System.out.println("Error -> "+ error);
+        System.out.println("\nerror -> " + error);
     }
 
     private void create(BufferedReader bufferedReader) throws IOException {
-        System.out.println("...create >---");
+        System.out.println("\n...create >---");
         try {
             String name = getName(bufferedReader);
             int age = getAge(bufferedReader);
@@ -91,7 +91,7 @@ public class UserController {
     }
 
     private void update(BufferedReader bufferedReader) throws IOException {
-        System.out.println("...update >---");
+        System.out.println("\n...update >---");
         try {
             String id = getUserId(bufferedReader);
             String name = getName(bufferedReader);
@@ -108,7 +108,7 @@ public class UserController {
     }
 
     private void delete(BufferedReader bufferedReader) throws IOException {
-        System.out.println("...delete >---");
+        System.out.println("\n...delete >---");
         try {
             String id = getUserId(bufferedReader);
             userService.delete(id);
@@ -133,34 +133,39 @@ public class UserController {
     }
 
     public void printResult(String str) {
-        System.out.println("...result >---\n" + str + "\n");
+        System.out.println("\n...result >---\n" + str + "\n");
     }
 
     public String getUserId(BufferedReader bufferedReader) throws IOException {
-        System.out.print("\nenter user's id -> ");
-        String id = bufferedReader.readLine();
-        if (id.isEmpty()) {
-            throw new NullPointerException();
-        }
+        String id;
+        do {
+            System.out.print("enter user's id -> ");
+            id = bufferedReader.readLine();
+        } while (id.isEmpty());
         return id;
     }
 
     public String getName(BufferedReader bufferedReader) throws IOException {
-        System.out.print("\nenter user's id -> ");
-        String name = bufferedReader.readLine();
-        if (name.isEmpty()) {
-            throw new NullPointerException();
-        }
+        String name;
+        do {
+            System.out.print("enter user's name -> ");
+            name = bufferedReader.readLine();
+        } while (name.isEmpty());
         return name;
     }
 
     private int getAge(BufferedReader bufferedReader) throws IOException {
-        System.out.print("enter user's age -> ");
-        String age = bufferedReader.readLine();
-        if (age.isEmpty()) {
-            throw new NullPointerException();
+        String ageString;
+        int age;
+        do {
+            System.out.print("enter user's age -> ");
+            ageString = bufferedReader.readLine();
+        } while (ageString.isEmpty());
+        age = Integer.parseInt(ageString);
+        if (age < 0 || age > 110) {
+            System.out.println("\n---> age cannot be less than 0 and greater than 120 years !");
         }
-        return Integer.parseInt(age);
+        return age;
     }
 
     private static void setConsoleCharSet() throws UnsupportedEncodingException {
