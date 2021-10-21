@@ -1,6 +1,5 @@
 package ua.com.alevel.view;
 
-import ua.com.alevel.dynamicArray.DynamicArray;
 import ua.com.alevel.entity.User;
 import ua.com.alevel.service.UserService;
 
@@ -79,20 +78,11 @@ public class UserController {
     private void create(BufferedReader bufferedReader) throws IOException {
         System.out.println("...create >---");
         try {
-            System.out.print("\nenter user's name -> ");
-            String nameString = bufferedReader.readLine();
-            if (nameString.isEmpty()) {
-                throw new NullPointerException();
-            }
-            System.out.print("enter user's age -> ");
-            String ageString = bufferedReader.readLine();
-            if (ageString.isEmpty()) {
-                throw new NullPointerException();
-            }
-            int age = Integer.parseInt(ageString);
+            String name = getName(bufferedReader);
+            int age = getAge(bufferedReader);
 
             User user = new User();
-            user.setName(nameString);
+            user.setName(name);
             user.setAge(age);
             userService.create(user);
         } catch (NullPointerException | NumberFormatException e) {
@@ -103,24 +93,13 @@ public class UserController {
     private void update(BufferedReader bufferedReader) throws IOException {
         System.out.println("...update >---");
         try {
-            System.out.print("\nenter user's id -> ");
-            String id = bufferedReader.readLine();
-            if (id.isEmpty()) {
-                throw new NullPointerException();
-            }
-            System.out.print("enter user's name -> ");
-            String nameString = bufferedReader.readLine();
-            if (nameString.isEmpty()) {
-                throw new NullPointerException();
-            }
-
-            System.out.print("enter user's age -> ");
-            String ageString = bufferedReader.readLine();
-            int age = Integer.parseInt(ageString);
+            String id = getUserId(bufferedReader);
+            String name = getName(bufferedReader);
+            int age = getAge(bufferedReader);
 
             User user = new User();
             user.setId(id);
-            user.setName(nameString);
+            user.setName(name);
             user.setAge(age);
             userService.update(user);
         } catch (NullPointerException | NumberFormatException e) {
@@ -131,11 +110,7 @@ public class UserController {
     private void delete(BufferedReader bufferedReader) throws IOException {
         System.out.println("...delete >---");
         try {
-            System.out.print("\nenter user's id -> ");
-            String id = bufferedReader.readLine();
-            if (id.isEmpty()) {
-                throw new NullPointerException();
-            }
+            String id = getUserId(bufferedReader);
             userService.delete(id);
         } catch (NullPointerException e) {
             printError(e.toString());
@@ -145,12 +120,7 @@ public class UserController {
     private void findById(BufferedReader bufferedReader) throws IOException {
         System.out.println("\n...findById >---");
         try {
-            System.out.print("\nenter user's id -> ");
-            String id = bufferedReader.readLine();
-            if (id.isEmpty()) {
-                throw new NullPointerException();
-            }
-
+            String id = getUserId(bufferedReader);
             printResult(String.valueOf(userService.findById(id.trim())).trim());
         } catch (NullPointerException e) {
             printError(e.toString());
@@ -159,20 +129,38 @@ public class UserController {
 
     private void findAll() {
         System.out.println("\n...findAll >---");
-//        printResult("\n" + String.valueOf(userService.findAll()).trim());
-
-        DynamicArray<User> usersArray = userService.findAll();
-        System.out.println(usersArray.toString());
-//        if (usersArray != null && usersArray.length() != 0) {
-//            for (int i = 0; i < usersArray.length(); i++) {
-//                String currentUser = "";
-//                System.out.println("user = " + currentUser);
-//            }
-//        }
+        printResult(String.valueOf(userService.findAll()).trim());
     }
 
     public void printResult(String str) {
-        System.out.println("...result >--- " + str + "\n");
+        System.out.println("...result >---\n" + str + "\n");
+    }
+
+    public String getUserId(BufferedReader bufferedReader) throws IOException {
+        System.out.print("\nenter user's id -> ");
+        String id = bufferedReader.readLine();
+        if (id.isEmpty()) {
+            throw new NullPointerException();
+        }
+        return id;
+    }
+
+    public String getName(BufferedReader bufferedReader) throws IOException {
+        System.out.print("\nenter user's id -> ");
+        String name = bufferedReader.readLine();
+        if (name.isEmpty()) {
+            throw new NullPointerException();
+        }
+        return name;
+    }
+
+    private int getAge(BufferedReader bufferedReader) throws IOException {
+        System.out.print("enter user's age -> ");
+        String age = bufferedReader.readLine();
+        if (age.isEmpty()) {
+            throw new NullPointerException();
+        }
+        return Integer.parseInt(age);
     }
 
     private static void setConsoleCharSet() throws UnsupportedEncodingException {
