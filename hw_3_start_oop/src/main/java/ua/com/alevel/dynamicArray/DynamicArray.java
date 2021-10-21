@@ -1,6 +1,6 @@
 package ua.com.alevel.dynamicArray;
 
-// HELPER - https://www.javatpoint.com/dynamic-array-in-java
+// HELPER about Dynamic Array - https://www.javatpoint.com/dynamic-array-in-java
 
 import ua.com.alevel.entity.User;
 
