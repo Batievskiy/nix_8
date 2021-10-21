@@ -17,7 +17,7 @@ public class UserController {
     private static final String FIND_ALL = "[ 5 ] findAll users";
     private static final String QUIT = "[ Q ] QUIT.";
     private static final String YOUR_CHOICE = "\nYour choice is -> ";
-    private static final String WRONG_CHOICE = "\n---> There is NO such choice in the menu.\n---> Try again ;)";
+    private static final String WRONG_CHOICE = "\n---> There is NO such choice in the menu.\n---> Try again ;)\n";
 
     private final UserService userService = new UserService();
 
@@ -38,6 +38,7 @@ public class UserController {
     }
 
     private void gamesToPlayMenu() {
+        System.out.println();
         System.out.println(CREATE_USER);
         System.out.println(UPDATE_USER);
         System.out.println(DELETE_USER);
@@ -71,32 +72,48 @@ public class UserController {
         }
     }
 
-    private void create(BufferedReader bufferedReader) {
+    private static void printError(String error) {
+        System.out.println("Error: "+ error);
+    }
+
+    private void create(BufferedReader bufferedReader) throws IOException {
         System.out.println("UserController.create");
         try {
             System.out.print("enter user's name: ");
             String nameString = bufferedReader.readLine();
-
+            if (nameString.isEmpty()) {
+                throw new NullPointerException();
+            }
             System.out.print("enter user's age: ");
             String ageString = bufferedReader.readLine();
+            if (ageString.isEmpty()) {
+                throw new NullPointerException();
+            }
             int age = Integer.parseInt(ageString);
 
             User user = new User();
             user.setName(nameString);
             user.setAge(age);
             userService.create(user);
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
+        } catch (NullPointerException | NumberFormatException e) {
+            printError(e.toString());
         }
     }
 
-    private void update(BufferedReader bufferedReader) {
+    private void update(BufferedReader bufferedReader) throws IOException {
         System.out.println("UserController.update");
         try {
             System.out.print("enter user's id: ");
             String id = bufferedReader.readLine();
+            if (id.isEmpty()) {
+                throw new NullPointerException();
+            }
             System.out.print("enter user's name: ");
             String nameString = bufferedReader.readLine();
+            if (nameString.isEmpty()) {
+                throw new NullPointerException();
+            }
+
             System.out.print("enter user's age: ");
             String ageString = bufferedReader.readLine();
             int age = Integer.parseInt(ageString);
@@ -106,32 +123,39 @@ public class UserController {
             user.setName(nameString);
             user.setAge(age);
             userService.update(user);
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
+        } catch (NullPointerException | NumberFormatException e) {
+            printError(e.toString());
         }
     }
 
-    private void delete(BufferedReader bufferedReader) {
+    private void delete(BufferedReader bufferedReader) throws IOException {
         System.out.println("UserController.delete");
         try {
             System.out.print("enter user's id: ");
             String id = bufferedReader.readLine();
+            if (id.isEmpty()) {
+                throw new NullPointerException();
+            }
+
             userService.delete(id);
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
+        } catch (NullPointerException e) {
+            printError(e.toString());
         }
     }
 
-    private void findById(BufferedReader bufferedReader) {
+    private void findById(BufferedReader bufferedReader) throws IOException {
         System.out.println("UserController.findById");
         try {
             System.out.print("enter user's id: ");
             String id = bufferedReader.readLine();
+            if (id.isEmpty()) {
+                throw new NullPointerException();
+            }
 
             User user = userService.findById(id);
             System.out.println("user = " + user);
-        } catch (IOException e) {
-            System.out.println("error: " + e.getMessage());
+        } catch (NullPointerException e) {
+            printError(e.toString());
         }
     }
 
