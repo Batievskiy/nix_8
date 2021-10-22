@@ -158,13 +158,13 @@ public class UserController {
         String ageString;
         int age;
         do {
-            System.out.print("enter user's age -> ");
+            System.out.print("enter user's age (0 to 120 years) -> ");
             ageString = bufferedReader.readLine();
+            if (!ageString.matches("^(12[0-0]|1[01][0-9]|[1-9]?[0-9])$")) {
+                ageString = "";
+            }
         } while (ageString.isEmpty());
         age = Integer.parseInt(ageString);
-        if (age < 0 || age > 110) {
-            System.out.println("\n---> age cannot be less than 0 and greater than 120 years !");
-        }
         return age;
     }
 
