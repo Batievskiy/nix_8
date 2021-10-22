@@ -3,6 +3,10 @@ package ua.com.alevel.config;
 import org.reflections.Reflections;
 import ua.com.alevel.db.UserDB;
 import ua.com.alevel.db.impl.AaDB;
+//import ua.com.alevel.db.impl.AaDB;
+//import ua.com.alevel.db.impl.SomeUserDB;
+import ua.com.alevel.db.impl.SomeUserDB;
+import ua.com.alevel.db.impl.UserInMemoryDB;
 import ua.com.alevel.util.ResourcesUtil;
 
 import java.util.Map;
@@ -32,10 +36,10 @@ public class ObjectFactory {
             for (Class<? extends IFC> impl : implS) {
                 if (ifc.isAssignableFrom(UserDB.class)) {
                     String db = propertiesMap.get("db");
-                    if (db.equals("aDB")) {
-                        return (IFC) AaDB.getInstance();
+                    if (db.equals("some")) {
+                        return (IFC) SomeUserDB.getInstance();
                     } else {
-                        return (IFC) AaDB.getInstance();
+                        return (IFC) UserInMemoryDB.getInstance();
                     }
                 }
                 if (!impl.isAnnotationPresent(Deprecated.class)) {

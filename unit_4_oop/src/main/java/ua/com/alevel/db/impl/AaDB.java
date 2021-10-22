@@ -4,13 +4,14 @@ import ua.com.alevel.dynamicArray.DynamicArray;
 import ua.com.alevel.entity.User;
 
 import java.util.UUID;
-
+// TODO - adapt db to new structure
 public class AaDB {
 
     private final DynamicArray<User> users;
     private static AaDB instance;
 
     private AaDB() {
+        System.out.println("AaDB");
         users = new DynamicArray<>();
     }
 
