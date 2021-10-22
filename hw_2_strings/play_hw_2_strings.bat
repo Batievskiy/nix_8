@@ -1,2 +1,2 @@
-java -jar target\hw_2.jar ^
+java -jar target\revereString.jar ^
 && pause

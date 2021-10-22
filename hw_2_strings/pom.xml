@@ -18,7 +18,7 @@
 
 
     <build>
-        <finalName>hw_2</finalName>
+        <finalName>revereString</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

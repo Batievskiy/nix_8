@@ -1,4 +1,4 @@
-package ua.com.alevel.reverseString;
+package ua.com.alevel.util;
 
 /*
  * Bunch of overloaded reverse methods to play with
@@ -7,10 +7,10 @@ package ua.com.alevel.reverseString;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class ReverseString {
+public final class ReverseStringUtil {
 
     // default constructor
-    private ReverseString() {
+    private ReverseStringUtil() {
 
     }
 

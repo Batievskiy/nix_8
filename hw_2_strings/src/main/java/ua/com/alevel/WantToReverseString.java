@@ -2,9 +2,8 @@ package ua.com.alevel;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 
-import ua.com.alevel.reverseString.ReverseString;
+import ua.com.alevel.util.ReverseStringUtil;
 
 public class WantToReverseString {
     private static InputStreamReader inputStreamReader;
@@ -63,14 +62,14 @@ public class WantToReverseString {
             switch (reverseToPlay.toLowerCase()) {
                 case "1" -> {
                     String sourceString = getSourceString(bufferedReader);
-                    String result = ReverseString.reverse(sourceString);
+                    String result = ReverseStringUtil.reverse(sourceString);
                     System.out.println("\nresult -> " + result);
                 }
                 case "2" -> {
                     String sourceString = getSourceString(bufferedReader);
                     String prompt = "isWordsPositionPreserve (true / false) -> ";
                     boolean isWordsPositionPreserve = getBool(bufferedReader, prompt);
-                    String result = ReverseString.reverse(sourceString, isWordsPositionPreserve);
+                    String result = ReverseStringUtil.reverse(sourceString, isWordsPositionPreserve);
                     System.out.println("\nresult -> " + result);
                 }
                 case "3" -> {
@@ -79,7 +78,7 @@ public class WantToReverseString {
                     String subString = bufferedReader.readLine();
                     String result;
                     try {
-                        result = ReverseString.reverse(sourceString, subString);
+                        result = ReverseStringUtil.reverse(sourceString, subString);
                     } catch (Exception e) {
                         System.out.println("error: " + e);
                         result = e.toString();
@@ -96,7 +95,7 @@ public class WantToReverseString {
                     boolean isInclusive = getBool(bufferedReader, booleanPrompt);
                     String result;
                     try {
-                        result = ReverseString.reverse(sourceString, startIndex, endIndex, isInclusive);
+                        result = ReverseStringUtil.reverse(sourceString, startIndex, endIndex, isInclusive);
                     } catch (Exception e) {
                         System.out.println("error: " + e);
                         result = e.toString();
@@ -113,7 +112,7 @@ public class WantToReverseString {
                     boolean isInclusive = getBool(bufferedReader, booleanPrompt);
                     String result;
                     try {
-                        result = ReverseString.reverse(sourceString, startSubstring, endSubstring, isInclusive);
+                        result = ReverseStringUtil.reverse(sourceString, startSubstring, endSubstring, isInclusive);
                     } catch (Exception e) {
                         System.out.println("error: " + e);
                         result = e.toString();
