@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import ua.com.alevel.util.ReverseStringUtil;
 
 public class WantToReverseString {
+
     private static InputStreamReader inputStreamReader;
     private static final String WANT_TO_REVERSE_STRING = "\n---< Want to Reverse String? >---\n";
     private static final String REVERSE = "[ 1 ] reverse(String sourceString)";
@@ -22,13 +23,9 @@ public class WantToReverseString {
     private static final String WANT_MORE = "\nWant more? ( Y / N ) - > ";
 
     public static void playALittleGame() throws IOException {
-
         setConsoleCharSet();
-
         System.out.println(nix_8);
-
         try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
-
             setYourChoice(bufferedReader);
         } catch (IOException e) {
             // I don't know how to deal with an Exceptions in proper way :(
@@ -49,13 +46,9 @@ public class WantToReverseString {
     }
 
     private static void setYourChoice(BufferedReader bufferedReader) throws IOException {
-
         String reverseToPlay;
-
         while (true) {
-
             gamesToPlayMenu();
-
             reverseToPlay = bufferedReader.readLine();
 
             // TODO - How to refactor this MESS and make it proper way???

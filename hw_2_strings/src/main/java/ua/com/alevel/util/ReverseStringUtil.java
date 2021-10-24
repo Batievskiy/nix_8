@@ -9,14 +9,9 @@ import java.util.regex.Pattern;
 
 public final class ReverseStringUtil {
 
-    // default constructor
-    private ReverseStringUtil() {
+    private ReverseStringUtil() { }
 
-    }
-
-    // TEST CODE STAGE...
     public static void main(String[] args) {
-
         String sourceString = "0123456789";
         String textString = "hello java world java";
         System.out.println();
@@ -72,7 +67,6 @@ public final class ReverseStringUtil {
     // recursive - reverse whole string
     public static String reverseRecursive(String sourceString) {
         if (sourceString.length() <= 1) return sourceString;
-
         return reverseRecursive(sourceString.substring(1)) + sourceString.charAt(0);
     }
 
