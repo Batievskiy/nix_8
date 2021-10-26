@@ -3,7 +3,7 @@ package ua.com.alevel;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-import static com.ua.alevel.ReverseStringUtil.reverse;
+import static ua.com.alevel.ReverseStringUtil.reverse;
 
 
 public class WantToReverseString {
