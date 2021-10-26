@@ -1,2 +1,2 @@
-java -jar target\revereString.jar ^
-&& pause
+call java -jar target\revereString.jar
+call pause

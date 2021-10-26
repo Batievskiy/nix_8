@@ -1,3 +1,3 @@
-mvn clean install ^
-&& java -jar target\revereString.jar ^
-&& pause
+call mvn clean install
+call java -jar target\revereString.jar
+call pause

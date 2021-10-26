@@ -1,2 +1,4 @@
-mvn clean install ^
-&& pause
+call cd ../
+call mvn clean install
+call cd ./hw_2_string
+call pause
