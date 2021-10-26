@@ -1,2 +1,2 @@
-call java -jar target\revereString.jar
+call java -jar target\hw_2_strings.jar
 call pause
