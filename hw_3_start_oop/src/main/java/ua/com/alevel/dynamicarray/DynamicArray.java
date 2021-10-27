@@ -1,4 +1,4 @@
-package ua.com.alevel.dynamicArray;
+package ua.com.alevel.dynamicarray;
 
 // HELPER about Dynamic Array - https://www.javatpoint.com/dynamic-array-in-java
 
