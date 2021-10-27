@@ -1,6 +1,6 @@
 package ua.com.alevel.db.impl;
 
-import ua.com.alevel.dynamicArray.DynamicArray;
+import ua.com.alevel.dynamicarray.DynamicArray;
 import ua.com.alevel.entity.User;
 
 import java.util.UUID;
