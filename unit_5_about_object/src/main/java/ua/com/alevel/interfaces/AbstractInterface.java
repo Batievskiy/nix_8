@@ -1,7 +1,7 @@
 package ua.com.alevel.interfaces;
 
-public interface AbstractInterface {
+public abstract interface AbstractInterface {
     /*
-     *
+     * - interface is abstract by default ;)
      */
 }

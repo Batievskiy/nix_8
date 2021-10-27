@@ -37,14 +37,12 @@ public class InnerClasses {
     // abstract inner class
     abstract class abstractInnerClass {
         /*
-         * - ???
+         * - ??? can't get idea of this class ???
          */
     }
 
     sealed class SealedInnerClass permits ExtendedSealedInnerClass {}
 
     final class ExtendedSealedInnerClass extends SealedInnerClass {}
-
-
 
 }
