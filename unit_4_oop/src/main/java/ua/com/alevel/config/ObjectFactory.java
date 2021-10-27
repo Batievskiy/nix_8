@@ -1,10 +1,9 @@
 package ua.com.alevel.config;
 
+import org.apache.commons.lang3.StringUtils;
 import org.reflections.Reflections;
+
 import ua.com.alevel.db.UserDB;
-import ua.com.alevel.db.impl.AaDB;
-//import ua.com.alevel.db.impl.AaDB;
-//import ua.com.alevel.db.impl.SomeUserDB;
 import ua.com.alevel.db.impl.SomeUserDB;
 import ua.com.alevel.db.impl.UserInMemoryDB;
 import ua.com.alevel.util.ResourcesUtil;
