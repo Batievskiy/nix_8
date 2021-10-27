@@ -1,6 +1,6 @@
 package ua.com.alevel.service;
 
-import ua.com.alevel.dynamicArray.DynamicArray;
+import ua.com.alevel.dynamicarray.DynamicArray;
 import ua.com.alevel.dao.UserDao;
 import ua.com.alevel.entity.User;
 
