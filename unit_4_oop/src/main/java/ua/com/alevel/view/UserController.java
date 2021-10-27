@@ -80,10 +80,12 @@ public class UserController {
         System.out.println("\n...create >---");
         try {
             String name = getName(bufferedReader);
+            String email = getEmail(bufferedReader);
             int age = getAge(bufferedReader);
 
             User user = new User();
             user.setName(name);
+            user.setEmail(email);
             user.setAge(age);
             userService.create(user);
         } catch (NullPointerException | NumberFormatException e) {
@@ -96,11 +98,13 @@ public class UserController {
         try {
             String id = getUserId(bufferedReader);
             String name = getName(bufferedReader);
+            String email = getEmail(bufferedReader);
             int age = getAge(bufferedReader);
 
             User user = new User();
             user.setId(id);
             user.setName(name);
+            user.setEmail(email);
             user.setAge(age);
             userService.update(user);
         } catch (NullPointerException | NumberFormatException e) {
@@ -153,6 +157,15 @@ public class UserController {
             name = bufferedReader.readLine();
         } while (name.isEmpty());
         return name;
+    }
+
+    public String getEmail(BufferedReader bufferedReader) throws IOException {
+        String email;
+        do {
+            System.out.print("enter user's email -> ");
+            email = bufferedReader.readLine();
+        } while (email.isEmpty());
+        return email;
     }
 
     private int getAge(BufferedReader bufferedReader) throws IOException {
